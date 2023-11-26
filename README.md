@@ -1,4 +1,4 @@
-# Foodify
+# Organiser V2 Backend
 
 An e-commerce platform for food.
 
@@ -13,6 +13,3 @@ This command runs the application in production mode.
 ## yarn dev
 
 This command runs the application in development mode
-
-## POSTMAN documentation
-https://documenter.getpostman.com/view/13255061/2s93kz6R5t#intro
