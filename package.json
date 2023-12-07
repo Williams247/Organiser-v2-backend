@@ -1,5 +1,5 @@
 {
-  "name": "auth-system",
+  "name": "organiser-v2-backend",
   "version": "1.0.0",
   "description": "Application",
   "main": "server.ts",
