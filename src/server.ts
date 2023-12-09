@@ -8,7 +8,6 @@ import { UserPayload, Status } from "@utils";
 import { appRouter } from './routes';
 
 dotenv.config();
-
 declare global {
   namespace Express {
     interface Request {
@@ -43,12 +42,11 @@ app.use((request: Request, response: Response) => {
   response.status(Status.NOT_FOUND).json({ message: 'Route not found' });
 });
 
-const dbURI = process.env.NODE_ENV === "production" ? process.env.LIVE_URI : process.env.LOCAL_URI;
 const port = process.env.PORT || process.env.LOCALHOST;
 
 app.listen(port, async (): Promise<void> => {
   try {
-    await mongoose.connect(dbURI as string);
+    await mongoose.connect(process.env.DATABASE_URI as string);
     console.log('Connection established');
   } catch (error) {
     console.log(error);
