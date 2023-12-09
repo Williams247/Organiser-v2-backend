@@ -70,8 +70,6 @@ export const fetchAllWithoutPaginate = async ({
 
   const count = await model.count();
 
-  console.log(count, "count");
-
   if (!responseData) {
     return {
       status: Status.NOT_FOUND,
