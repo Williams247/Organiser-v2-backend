@@ -28,7 +28,8 @@ const user = new Schema<UserPayload>({
     type: String,
     required: true
   },
-  image: String
+  image: String,
+  disabled: Boolean
 });
 
 export const UserModel = mogoose.model('user', user);

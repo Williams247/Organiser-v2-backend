@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
-import { UserModel } from '@models';
-import { Status } from '@utils';
+import { Request, Response } from "express";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+import { UserModel } from "@models";
+import { Status } from "@utils";
 
 export const login = async (request: Request, response: Response) => {
   try {
@@ -12,7 +12,7 @@ export const login = async (request: Request, response: Response) => {
     if (!user) {
       response
         .status(Status.NOT_FOUND)
-        .json({ message: 'Invalid email or password' });
+        .json({ success: false, message: "Invalid email or password" });
       return;
     }
 
@@ -24,17 +24,17 @@ export const login = async (request: Request, response: Response) => {
     if (!userPassword) {
       response
         .status(Status.NOT_FOUND)
-        .json({ message: 'Invalid email or password' });
+        .json({ message: "Invalid email or password" });
       return;
     }
 
+    if (user.disabled)
+      return response
+        .status(Status.FORBIDDEN)
+        .json({ success: false, message: "You're disabled contact the admin" });
+
     const payload = {
       id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      verified: user.verified,
-      role: user.role,
     };
 
     const token = await jwt.sign(payload, process.env.SECRET as string, {
@@ -42,7 +42,7 @@ export const login = async (request: Request, response: Response) => {
     });
 
     response.status(Status.SUCCESS).json({
-      message: 'Login successful',
+      message: "Login successful",
       success: true,
       data: {
         user: payload,
@@ -52,7 +52,7 @@ export const login = async (request: Request, response: Response) => {
   } catch (error) {
     response
       .status(Status.SERVER_ERROR)
-      .json({ success: false, message: 'Failed to login' });
+      .json({ success: false, message: "Failed to login" });
     console.log(error);
   }
 };

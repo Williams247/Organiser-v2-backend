@@ -19,6 +19,7 @@ export interface UserPayload {
   image?: string;
   verified?: boolean;
   role?: string;
+  disabled?: boolean
 }
 
 export interface ActivitiesPayload {

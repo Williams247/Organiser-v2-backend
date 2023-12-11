@@ -7,6 +7,7 @@ import { Status } from '@utils';
 export const updateProfile = async (request: Request, response: Response) => {
   try {
     const userId = request?.user?.id as string;
+    
     const {
       body: { firstName, lastName, password },
     } = request;

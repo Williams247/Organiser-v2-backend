@@ -16,22 +16,21 @@ export const fetchAll = async ({
   limit,
   searchParams,
   populate,
+  countParams,
+  selectParms,
 }: FetchProps): Promise<ServiceResponsePayload> => {
   try {
-    const pageReq = Number(page ?? 1);
-    const limitReq = Number(limit ?? 5);
+    const pageRequest = Number(page ?? 1);
+    const limitRequest = Number(limit ?? 10);
 
-    const pageValue = pageReq === 0 ? 1 : pageReq;
-    const limitValue = limitReq === 0 ? 5 : limitReq;
+    const count = await model.countDocuments(countParams ?? {});
 
     const responseData = await model
       .find({ ...searchParams })
-      .skip((pageValue - 1) * pageValue)
-      .limit(limitValue)
+      .skip((pageRequest - 1) * limitRequest)
+      .limit(limitRequest)
       .populate(populate ?? "")
-      .select("-password");
-
-    const count = await model.count();
+      .select(selectParms ?? "-password");
 
     if (!responseData) {
       return {
@@ -48,8 +47,8 @@ export const fetchAll = async ({
       message: "Success",
       data: {
         totalItems: count,
-        currentPage: pageValue,
-        pages: Math.ceil(count / limitValue),
+        currentPage: pageRequest,
+        pages: Math.ceil(count / limitRequest),
         results: responseData,
       },
     };
@@ -62,13 +61,15 @@ export const fetchAllWithoutPaginate = async ({
   model,
   searchParams,
   populate,
+  countParams,
+  selectParms,
 }: FetchProps): Promise<ServiceResponsePayload> => {
   const responseData = await model
     .find({ ...searchParams })
     .populate(populate ?? "")
-    .select("-password");
+    .select(selectParms ?? "-password");
 
-  const count = await model.count();
+  const count = await model.countDocuments(countParams ?? {});
 
   if (!responseData) {
     return {
@@ -119,9 +120,10 @@ export const fetchById = async ({
 export const fetchOneWithMoreParams = async ({
   model,
   searchParams,
+  selectParms
 }: fetchOneWithMoreParamsProps) => {
   try {
-    const data = await model.findOne(searchParams).select("-password");
+    const data = await model.findOne(searchParams).select(selectParms ?? "-password");
     if (!data) {
       return {
         status: Status.NOT_FOUND,

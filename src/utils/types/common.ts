@@ -1,12 +1,19 @@
 import { Model, AnyExpression } from "mongoose";
 import { Status } from "./default";
 
+type selectParmsProps =
+  | string
+  | string[]
+  | Record<string, number | boolean | object>;
+
 export interface FetchProps {
   model: Model<AnyExpression>;
   page?: unknown;
   limit?: unknown;
   searchParams?: {};
   populate?: string | string[];
+  countParams?: unknown;
+  selectParms?: selectParmsProps;
 }
 
 export interface FetchByIdProps {
@@ -17,6 +24,7 @@ export interface FetchByIdProps {
 export interface fetchOneWithMoreParamsProps {
   model: Model<AnyExpression>;
   searchParams: {};
+  selectParms?: selectParmsProps;
 }
 
 export interface FetchResponsePayload {

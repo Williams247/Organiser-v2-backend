@@ -36,7 +36,8 @@ export const register = async (request: Request, response: Response) => {
       lastName,
       password: hashedPassword,
       role,
-      verified: Role.ADMIN === role ? true : false,
+      verified: true,
+      disabled: false
     });
 
     await createUser.save();

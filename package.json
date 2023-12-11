@@ -10,7 +10,8 @@
     "build": "yarn install && yarn add --dev @types/bcryptjs @types/dotenv @types/express @types/joi @types/jsonwebtoken @types/mongoose @types/morgan @types/node typescript nodemon ts-node typescript && tsc",
     "start": "node ./build/server.js",
     "generate": "npx tsc",
-    "tsc:init": "tsc --init"
+    "tsc:init": "tsc --init",
+    "seed":"ts-node ./src/seeders/index.ts"
   },
   "_moduleAliases": {
     "@services": "./src/services",
@@ -18,7 +19,8 @@
     "@controllers": "./src/controllers",
     "@models": "./src/models",
     "@middleware": "./src/middleware",
-    "@routes": "./src/routes"
+    "@routes": "./src/routes",
+    "@seeders": "./src/seeders"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

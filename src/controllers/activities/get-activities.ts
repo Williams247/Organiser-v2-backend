@@ -30,6 +30,7 @@ export const getActivities = async (request: Request, response: Response) => {
       page,
       limit,
       searchParams: { ...searchParamsOptions() },
+      countParams: { owner }
     });
 
     response.status(status).json({ success, message, data });
