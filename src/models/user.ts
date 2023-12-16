@@ -32,4 +32,6 @@ const user = new Schema<UserPayload>({
   disabled: Boolean
 });
 
+user.set('timestamps', true);
+
 export const UserModel = mogoose.model('user', user);

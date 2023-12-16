@@ -13,16 +13,16 @@ const activity = new Schema<ActivitiesPayload>({
     type: Boolean,
     required: true,
   },
-  owner: Schema.Types.ObjectId,
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "user"
+  },
   role: {
     type: String,
     required: true,
-  },
-  createdAt: {
-    type: Schema.Types.Mixed,
-    required: true,
-  },
-  updatedAt: Schema.Types.Mixed,
+  }
 });
+
+activity.set('timestamps', true);
 
 export const ActivityModel = mogoose.model('activity', activity);

@@ -28,7 +28,6 @@ export const updateActivity = async (request: Request, response: Response) => {
       newActivity.isChecked = isChecked ?? newActivity.isChecked;
       newActivity.todo = todo ?? newActivity.todo;
       newActivity.note = note ?? newActivity.note;
-      newActivity.updatedAt = new Date().toISOString();
       
       await newActivity.save();
       response

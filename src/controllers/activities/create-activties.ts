@@ -13,8 +13,6 @@ export const createActivties = async (request: Request, response: Response) => {
       note,
       role: request.user.role,
       isChecked: false,
-      createdAt: new Date().toISOString(),
-      updatedAt: null
     });
     await createActivty.save();
     response

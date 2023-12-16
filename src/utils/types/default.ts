@@ -22,6 +22,17 @@ export interface UserPayload {
   disabled?: boolean
 }
 
+export interface OtpProps {
+  code?: string;
+  email?: string
+}
+
+export interface UpdatePasswordPayload {
+  email?: string;
+  password?: string;
+  otpCode?: string
+}
+
 export interface ActivitiesPayload {
   _id?: string;
   todo?: string;
@@ -29,8 +40,6 @@ export interface ActivitiesPayload {
   owner?: string;
   role?: string;
   isChecked?: boolean;
-  createdAt?: string;
-  updatedAt?: string | null;
 }
 
 export enum Role {
