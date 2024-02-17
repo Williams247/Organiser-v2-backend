@@ -42,6 +42,12 @@ export interface ActivitiesPayload {
   isChecked?: boolean;
 }
 
+export interface MessagePayload {
+  email: string;
+  from: string;
+  message: string;
+}
+
 export enum Role {
   USER = "user",
   ADMIN = "admin",

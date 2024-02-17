@@ -120,10 +120,12 @@ export const fetchById = async ({
 export const fetchOneWithMoreParams = async ({
   model,
   searchParams,
-  selectParms
+  selectParms,
 }: fetchOneWithMoreParamsProps) => {
   try {
-    const data = await model.findOne(searchParams).select(selectParms ?? "-password");
+    const data = await model
+      .findOne(searchParams)
+      .select(selectParms ?? "-password");
     if (!data) {
       return {
         status: Status.NOT_FOUND,
