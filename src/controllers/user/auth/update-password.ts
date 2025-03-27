@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import bcryptjs from "bcryptjs";
+import bcryptjs from "bcrypt";
 import { OtpModel, UserModel } from "@models";
 import { fetchOneWithMoreParams } from "@services";
 import { Status } from "@utils";

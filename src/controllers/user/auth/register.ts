@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import { Role, UserPayload, Status } from '@utils';
 import { UserModel } from '@models';
 
